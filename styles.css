@@ -122,3 +122,19 @@ header {
 .delay-1 { animation-delay: 0.2s; }
 .delay-2 { animation-delay: 0.4s; }
 .delay-3 { animation-delay: 0.6s; }
+/* Добавленные стили для кнопки очистки */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.clear-btn {
+    background: #ff4757 !important;
+}
+
+.clear-btn:hover {
+    background: #ff0000 !important;
+}
+
+/* Остальные стили остаются как в предыдущей версии */
