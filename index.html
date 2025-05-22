@@ -19,17 +19,17 @@
     <!-- Основной контент -->
     <section class="main-content">
         <div class="container">
-            <div class="options">
-                <div class="option buy-ticket animated delay-1">
-                    <h3>Купить билет</h3>
-                </div>
-                <div class="option destination animated delay-2">
-                    <h3>Тайлайд</h3>
-                </div>
-                <div class="option destination animated delay-3">
-                    <h3>Мадагаскар</h3>
-                </div>
+            <!-- Форма добавления новых карточек -->
+            <div class="add-form">
+                <h2>Добавить новое направление</h2>
+                <input type="text" id="titleInput" placeholder="Название направления">
+                <input type="text" id="descriptionInput" placeholder="Описание">
+                <input type="text" id="imageInput" placeholder="URL изображения">
+                <button onclick="addPlace()">Добавить объект</button>
             </div>
+
+            <!-- Контейнер для карточек -->
+            <div id="cardsContainer" class="cards-container"></div>
         </div>
     </section>
 
