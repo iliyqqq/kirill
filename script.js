@@ -1,5 +1,5 @@
-// Исходный массив объектов
-let places = [
+// Инициализация данных из localStorage или создание массива по умолчанию
+let places = JSON.parse(localStorage.getItem("places")) || [
     { 
         title: "Тайлайд", 
         description: "Райский остров с белоснежными пляжами", 
@@ -12,6 +12,11 @@ let places = [
     }
 ];
 
+// Функция сохранения данных в localStorage
+function saveToStorage() {
+    localStorage.setItem("places", JSON.stringify(places));
+}
+
 // Функция рендеринга карточек
 function renderCards() {
     let container = document.getElementById("cardsContainer");
@@ -22,7 +27,7 @@ function renderCards() {
         card.className = "card animated";
         card.style.animationDelay = `${index * 0.1}s`;
         card.innerHTML = `
-            <img src="${place.image}" alt="${place.title}">
+            <img src="${place.image}" alt="${place.title}" onerror="this.src='https://via.placeholder.com/300x150?text=No+Image'">
             <h3>${place.title}</h3>
             <p>${place.description}</p>
             <button onclick="deleteCard(${index})">Удалить</button>
@@ -33,9 +38,9 @@ function renderCards() {
 
 // Функция добавления нового места
 function addPlace() {
-    const title = document.getElementById("titleInput").value;
-    const description = document.getElementById("descriptionInput").value;
-    const image = document.getElementById("imageInput").value;
+    const title = document.getElementById("titleInput").value.trim();
+    const description = document.getElementById("descriptionInput").value.trim();
+    const image = document.getElementById("imageInput").value.trim();
 
     if (!title || !description || !image) {
         alert("Заполните все поля!");
@@ -43,6 +48,7 @@ function addPlace() {
     }
 
     places.push({ title, description, image });
+    saveToStorage();
     renderCards();
     
     // Очистка формы
@@ -55,6 +61,16 @@ function addPlace() {
 function deleteCard(index) {
     if (confirm("Удалить это направление?")) {
         places.splice(index, 1);
+        saveToStorage();
+        renderCards();
+    }
+}
+
+// Функция очистки всех данных
+function clearAll() {
+    if (confirm("Очистить все направления? Это действие нельзя отменить!")) {
+        localStorage.removeItem("places");
+        places = [];
         renderCards();
     }
 }
@@ -62,9 +78,4 @@ function deleteCard(index) {
 // Инициализация при загрузке страницы
 document.addEventListener("DOMContentLoaded", function() {
     renderCards();
-    
-    // Анимация для элементов
-    document.querySelectorAll(".animated").forEach(el => {
-        el.style.opacity = "0";
-    });
 });
