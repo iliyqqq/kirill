@@ -19,13 +19,16 @@
     <!-- Основной контент -->
     <section class="main-content">
         <div class="container">
-            <!-- Форма добавления новых карточек -->
+            <!-- Форма добавления -->
             <div class="add-form">
                 <h2>Добавить новое направление</h2>
                 <input type="text" id="titleInput" placeholder="Название направления">
                 <input type="text" id="descriptionInput" placeholder="Описание">
                 <input type="text" id="imageInput" placeholder="URL изображения">
-                <button onclick="addPlace()">Добавить объект</button>
+                <div class="form-buttons">
+                    <button onclick="addPlace()">Добавить</button>
+                    <button onclick="clearAll()" class="clear-btn">Очистить всё</button>
+                </div>
             </div>
 
             <!-- Контейнер для карточек -->
@@ -36,7 +39,7 @@
     <!-- Подвал -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 AirLand. Все права защищены.!!</p>
+            <p>&copy; 2023 AirLand. Все права защищены.</p>
         </div>
     </footer>
 
